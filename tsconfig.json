@@ -1,0 +1,9 @@
+{
+    "exclude": ["node_modules"],
+    "include": ["./*.ts", "day1/core.ts", "day1/core.test.ts", "day1/main.ts"],
+    "compilerOptions": {
+        "types": ["jest", "node"],
+        "typeRoots": ["./types", "./node_modules/@types"],
+        "downlevelIteration": true
+    },
+}
