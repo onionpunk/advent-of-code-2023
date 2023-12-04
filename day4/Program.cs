@@ -4,15 +4,29 @@ using System.Collections.Generic;
 
 class ConsoleApp
 {
-  private struct CardSet
+  private class CardSet
   {
-    public string[] WinningNumbers;
-    public string[] OwnedNumbers;
+    private string[] _winningNumbers;
+    private string[] _ownedNumbers;
+    private int _matches;
+
+    public int Matches
+    {
+      get { return _matches; }
+    }
 
     public CardSet(string[] inWinning, string[] inOwned)
     {
-      WinningNumbers = inWinning;
-      OwnedNumbers = inOwned;
+      _winningNumbers = inWinning;
+      _ownedNumbers = inOwned;
+      _matches = 0;
+      foreach (string owned in _ownedNumbers)
+      {
+        if (_winningNumbers.Any(item => owned == item))
+        {
+          _matches++;
+        }
+      }
     }
   }
 
@@ -38,15 +52,7 @@ class ConsoleApp
     List<CardSet> cardSets = Setup();
     foreach (CardSet card in cardSets)
     {
-      int matches = 0;
-      foreach (string owned in card.OwnedNumbers)
-      {
-        if (card.WinningNumbers.Any(item => owned == item))
-        {
-          matches++;
-        }
-      }
-
+      int matches = card.Matches;
       if (matches > 0)
       {
         int worth = (int)Math.Pow(2, (matches - 1));
@@ -71,16 +77,8 @@ class ConsoleApp
     getCopyIndices = cardIndex =>
     {
       List<int> copyIndices = new List<int>();
-      int matches = 0;
       CardSet card = cardSets[cardIndex];
-      foreach (string owned in card.OwnedNumbers)
-      {
-        if (card.WinningNumbers.Any(item => owned == item))
-        {
-          matches++;
-        }
-      }
-
+      int matches = card.Matches;
       if (matches > 0)
       {
         for (int i = 1; i <= matches; i++)
@@ -89,7 +87,6 @@ class ConsoleApp
           copyIndices.Add(copyIndex);
         }
       }
-
       return copyIndices;
     };
 
