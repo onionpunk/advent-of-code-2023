@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "iostream": "cpp",
+    "iosfwd": "cpp",
+    "vector": "cpp",
+    "map": "cpp",
+    "ostream": "cpp",
+    "functional": "cpp",
+    "version": "cpp",
+    "iterator": "cpp"
+  },
+  "C_Cpp.default.cppStandard": "c++20"
+}
