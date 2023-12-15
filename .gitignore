@@ -3,3 +3,5 @@ coverage/
 
 bin/
 obj/
+
+__pycache__
